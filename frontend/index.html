@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VeriScope — Multimodal Fake News Detector</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><div class="brand-mark">V</div><span>VeriScope</span></div>
+  <nav><a href="#analyzer">Analyzer</a><a href="#ranking">Risk Ranking</a></nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <span class="eyebrow">THINKATHON 2026 • ML + MULTIMODAL AI</span>
+      <h1>Spot suspicious news before it spreads.</h1>
+      <p>Analyze text, screenshots and short videos with a lightweight ML pipeline that extracts content, predicts Fake/Real, calculates a prototype risk score and summarizes the input.</p>
+      <div class="hero-pills"><span>TF-IDF + Logistic Regression</span><span>OCR</span><span>Speech-to-Text</span></div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-title">Risk signal</div>
+      <div class="score-ring"><span>0–100</span></div>
+      <p>Higher score = higher prototype misinformation risk.</p>
+    </div>
+  </section>
+
+  <section id="analyzer" class="panel">
+    <div class="section-heading">
+      <div><span class="eyebrow">ANALYZE</span><h2>Check a news item</h2></div>
+      <span id="healthBadge" class="status">Checking API…</span>
+    </div>
+
+    <div class="input-grid">
+      <div class="input-card">
+        <label for="newsText">News text</label>
+        <textarea id="newsText" placeholder="Paste a news claim, headline, or short article here…"></textarea>
+      </div>
+      <div class="input-card">
+        <label for="imageFile">News image / screenshot</label>
+        <input id="imageFile" type="file" accept="image/png,image/jpeg,image/webp">
+        <small>OCR extracts visible text before ML analysis.</small>
+      </div>
+      <div class="input-card">
+        <label for="videoFile">News reel / video</label>
+        <input id="videoFile" type="file" accept="video/*">
+        <small>Audio is extracted and transcribed with Whisper tiny.</small>
+      </div>
+    </div>
+
+    <button id="analyzeBtn" class="primary-btn">Analyze News <span>→</span></button>
+    <div id="loading" class="loading hidden">Processing… OCR/Whisper can take a little time on CPU.</div>
+    <div id="errorBox" class="error hidden"></div>
+
+    <div id="resultSection" class="result hidden">
+      <div class="result-top">
+        <div>
+          <span class="eyebrow">RESULT</span>
+          <h2 id="prediction">—</h2>
+        </div>
+        <div class="score-box"><strong id="riskScore">0</strong><span>/ 100</span><small id="riskLevel">LOW RISK</small></div>
+      </div>
+      <div class="result-grid">
+        <div><h3>Confidence</h3><p id="confidence">—</p></div>
+        <div><h3>Summary</h3><p id="summary">—</p></div>
+      </div>
+      <div><h3>Extracted / analyzed text</h3><pre id="extractedText"></pre></div>
+    </div>
+  </section>
+
+  <section id="ranking" class="panel">
+    <div class="section-heading">
+      <div><span class="eyebrow">RANK</span><h2>Compare up to 10 news items</h2></div>
+      <span class="counter"><span id="itemCount">0</span>/10</span>
+    </div>
+    <p class="muted">Enter one claim per box. The highest prototype risk score appears first.</p>
+    <div id="rankingInputs" class="ranking-inputs">
+      <div class="rank-input-row"><span>01</span><input class="rank-news" maxlength="2000" placeholder="News item 1"></div>
+    </div>
+    <div class="rank-actions">
+      <button id="addNewsBtn" class="secondary-btn">+ Add news item</button>
+      <button id="rankBtn" class="primary-btn">Rank News →</button>
+    </div>
+    <div id="rankLoading" class="loading hidden">Ranking…</div>
+    <div id="rankError" class="error hidden"></div>
+    <div id="rankingResults" class="ranking-results hidden"></div>
+  </section>
+</main>
+
+<footer><p>VeriScope is a prototype detection/flagging tool. It does not automatically delete or moderate social-media posts.</p></footer>
+<script src="js/main.js"></script>
+<script src="js/upload.js"></script>
+<script src="js/ranking.js"></script>
+</body>
+</html>

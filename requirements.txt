@@ -1,0 +1,10 @@
+Flask>=3.0,<4
+flask-cors>=4.0,<7
+scikit-learn>=1.4,<2
+numpy>=1.26,<3
+pillow>=10,<12
+pytesseract>=0.3.13,<0.4
+openai-whisper>=20240930
+firebase-admin>=6.5,<8
+python-dotenv>=1.0,<2
+pytest>=8,<9

@@ -1,0 +1,33 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+env/
+.env
+*.log
+
+# Firebase / credentials
+secrets/
+*-firebase-adminsdk-*.json
+firebase-service-account*.json
+service-account*.json
+*.pem
+*.key
+
+# Runtime uploads
+uploads/images/*
+uploads/videos/*
+!uploads/images/.gitkeep
+!uploads/videos/.gitkeep
+
+# Generated / local data
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
